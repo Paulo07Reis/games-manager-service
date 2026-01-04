@@ -8,5 +8,5 @@ fun main() {
 
     val gameId = "612"
 
-    println(cheapShark.getGameById(gameId))
+    cheapShark.getGameById(gameId)
 }
