@@ -1,6 +1,7 @@
 package org.example.resource.clients
 
 import com.google.gson.Gson
+import org.example.resource.entities.Game
 import org.example.resource.entities.GamesInfo
 import java.net.URI
 import java.net.http.HttpClient
@@ -10,7 +11,7 @@ import java.net.http.HttpResponse
 class CheapSharkClient {
     val gson = Gson()
 
-    fun getGameById(id: String): String{
+    fun getGameById(id: String){
         val httpClient: HttpClient = HttpClient.newHttpClient()
         val request = HttpRequest.newBuilder()
             .uri(URI.create("https://www.cheapshark.com/api/1.0/games?id=$id"))
@@ -18,10 +19,10 @@ class CheapSharkClient {
 
         val response = httpClient.send(request, HttpResponse.BodyHandlers.ofString())
 
-        val teste = gson.fromJson(response.body(), GamesInfo::class.java)
+        val infoGame = gson.fromJson(response.body(), GamesInfo::class.java)
 
-        println(teste)
+        val game = Game(infoGame.info.title, infoGame.info.thumb)
 
-        return response.body()
+        println(game)
     }
 }
