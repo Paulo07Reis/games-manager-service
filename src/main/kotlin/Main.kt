@@ -1,12 +1,15 @@
 package org.example
 
 import org.example.resource.clients.CheapSharkClient
+import java.util.Scanner
 
 fun main() {
+    val scanner = Scanner(System.`in`)
 
     val cheapShark = CheapSharkClient()
 
-    val gameId = "612"
+    print("Set game id: ")
+    val gameId = scanner.nextLine()
 
     cheapShark.getGameById(gameId)
 }
