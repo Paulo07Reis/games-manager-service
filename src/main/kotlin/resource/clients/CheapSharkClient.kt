@@ -1,6 +1,7 @@
 package org.example.resource.clients
 
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import org.example.resource.entities.Game
 import org.example.resource.entities.GamesInfo
 import java.net.URI
@@ -19,10 +20,16 @@ class CheapSharkClient {
 
         val response = httpClient.send(request, HttpResponse.BodyHandlers.ofString())
 
-        val infoGame = gson.fromJson(response.body(), GamesInfo::class.java)
+        try {
+            val infoGame = gson.fromJson(response.body(),  GamesInfo::class.java)
 
-        val game = Game(infoGame.info.title, infoGame.info.thumb)
+            val game = Game(infoGame.info.title, infoGame.info.thumb)
 
-        println(game)
+            println(game)
+
+        } catch (ex: JsonSyntaxException){
+            println("Game not found, use other game_id")
+        }
+
     }
 }
