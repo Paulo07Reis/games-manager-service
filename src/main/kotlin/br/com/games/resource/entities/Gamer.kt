@@ -55,12 +55,12 @@ data class Gamer(
         }
     }
 
-//    init {
-//        if (name.isBlank()) {
-//            throw IllegalArgumentException("Name must not be blank")
-//        }
-//        this.email = emailValidator()
-//    }
+    init {
+        if (name.isBlank()) {
+            throw IllegalArgumentException("Name must not be blank")
+        }
+        this.email = emailValidator()
+    }
 
     companion object {
         fun createGamer(sc: Scanner) : Gamer {
