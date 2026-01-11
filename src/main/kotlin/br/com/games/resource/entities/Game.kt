@@ -1,10 +1,10 @@
-package org.example.resource.entities
+package org.example.br.com.games.resource.entities
 
 data class Game(
     val title: String,
     val thumb: String
 ) {
-    val description = ""
+    var description = ""
 
     override fun toString(): String {
         return "Select game:\n" +

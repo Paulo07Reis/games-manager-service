@@ -1,6 +1,6 @@
 package org.example
 
-import org.example.resource.clients.CheapSharkClient
+import org.example.br.com.games.resource.clients.CheapSharkClient
 import java.util.Scanner
 
 fun main() {
