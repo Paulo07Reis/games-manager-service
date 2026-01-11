@@ -1,5 +1,6 @@
 package org.example.br.com.games.resource.entities
 
+import java.util.Scanner
 import kotlin.random.Random
 
 data class Gamer(
@@ -17,6 +18,7 @@ data class Gamer(
     var birthday: String? = null
     var userId: String? = null
         private set
+    val sharedGames = mutableListOf<Game?>()
 
     constructor(
         name: String,
@@ -53,11 +55,38 @@ data class Gamer(
         }
     }
 
-    init {
-        if (name.isBlank()) {
-            throw IllegalArgumentException("Name must not be blank")
+//    init {
+//        if (name.isBlank()) {
+//            throw IllegalArgumentException("Name must not be blank")
+//        }
+//        this.email = emailValidator()
+//    }
+
+    companion object {
+        fun createGamer(sc: Scanner) : Gamer {
+            println("Creating gamer!")
+
+            print("Gamer Name: ")
+            val name = sc.nextLine()
+
+            print("Gamer email: ")
+            val email = sc.nextLine()
+
+            println("Do you need to do the complete onboarding? Y/N")
+            print("Choise: ")
+            val choice = sc.nextLine()
+
+            if (choice.equals("Y", ignoreCase = true)) {
+                print("Birthdate: ")
+                val birthday = sc.nextLine()
+                print("User name: ")
+                val user = sc.nextLine()
+
+                return Gamer(name, email, birthday, user)
+            } else {
+                return Gamer(name, email)
+            }
         }
-        this.email = emailValidator()
     }
 
 }

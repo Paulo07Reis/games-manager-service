@@ -13,7 +13,7 @@ class CheapSharkClient {
     val gson = Gson()
     val scanner = Scanner(System.`in`)
 
-    fun getGameById(id: String){
+    fun getGameById(id: String) : Game? {
         var game: Game? = null
         val httpClient: HttpClient = HttpClient.newHttpClient()
         val request = HttpRequest.newBuilder()
@@ -45,8 +45,11 @@ class CheapSharkClient {
                 game?.description = game.title
             }
 
-            print(game)
+            println("\n" + game)
+
+            return game
         }
 
+        return null
     }
 }
