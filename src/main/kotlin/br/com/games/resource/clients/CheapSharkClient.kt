@@ -17,17 +17,28 @@ class CheapSharkClient {
     val gson = Gson()
     val scanner = Scanner(System.`in`)
 
-    fun getGameById(id: String) : Game? {
-        var game: Game? = null
-        val httpClient: HttpClient = HttpClient.newHttpClient()
+    fun getResponseByUrl(url: String): String{
+        val client: HttpClient = HttpClient.newHttpClient()
+
         val request = HttpRequest.newBuilder()
-            .uri(URI.create("https://www.cheapshark.com/api/1.0/games?id=$id"))
+            .uri(URI.create(url))
             .build()
 
-        val response = httpClient.send(request, HttpResponse.BodyHandlers.ofString())
+        val response = client
+            .send(request, HttpResponse.BodyHandlers.ofString())
+
+        return response.body()
+    }
+
+    fun getGameById(id: String) : Game? {
+        var game: Game? = null
+        val url = "https://www.cheapshark.com/api/1.0/games?id=$id"
+
+
+        val response = getResponseByUrl(url)
 
         val result = runCatching {
-            val infoGame = gson.fromJson(response.body(),  GamesInfo::class.java)
+            val infoGame = gson.fromJson(response,  GamesInfo::class.java)
 
             game = Game(infoGame.info.title, infoGame.info.thumb)
         }
@@ -60,16 +71,7 @@ class CheapSharkClient {
     fun findGamers(): List<Gamer> {
         val url = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
 
-        val client: HttpClient = HttpClient.newHttpClient()
-
-        val request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .build()
-
-        val response = client
-            .send(request, HttpResponse.BodyHandlers.ofString())
-
-        val json = response.body()
+        val json = getResponseByUrl(url)
 
         val gson = Gson()
         val gamerType = object : TypeToken<List<GamerJson>>() {}.type
