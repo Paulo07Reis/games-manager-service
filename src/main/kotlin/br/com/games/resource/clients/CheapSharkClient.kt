@@ -3,8 +3,10 @@ package org.example.br.com.games.resource.clients
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.example.br.com.games.resource.entities.Game
+import org.example.br.com.games.resource.entities.Gamer
 import org.example.br.com.games.resource.entities.GamerJson
 import org.example.br.com.games.resource.entities.GamesInfo
+import org.example.br.com.games.resource.utils.toGamer
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -55,7 +57,7 @@ class CheapSharkClient {
         return null
     }
 
-    fun findGamers(): List<GamerJson> {
+    fun findGamers(): List<Gamer> {
         val url = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
 
         val client: HttpClient = HttpClient.newHttpClient()
@@ -71,6 +73,10 @@ class CheapSharkClient {
 
         val gson = Gson()
         val gamerType = object : TypeToken<List<GamerJson>>() {}.type
-        return gson.fromJson(json, gamerType)
+        val gamerJsonList: List<GamerJson> = gson.fromJson(json, gamerType)
+
+        val gamerList= gamerJsonList.map { g -> g.toGamer() }
+
+        return gamerList
     }
 }
