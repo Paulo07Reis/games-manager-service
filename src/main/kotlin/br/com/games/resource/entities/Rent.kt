@@ -8,6 +8,6 @@ data class Rent(
 ){
 
     override fun toString(): String {
-        return "${game!!.title} rent by ${gamer.name} for R$:$rentValue"
+        return "${game!!.title} rent by ${gamer.name} for R$$rentValue"
     }
 }

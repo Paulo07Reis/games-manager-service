@@ -6,12 +6,20 @@ import java.time.LocalDate
 
 fun main(){
     val consume = CheapSharkClient()
+
     val listGamers = consume.findGamers()
-    val game = consume.getGameById("18")
+    val gamer = listGamers[3]
+
+    val game1 = consume.getGameById("77")
+    val game2 = consume.getGameById("13")
+
     val period = Period(LocalDate.now(), LocalDate.now().plusDays(7))
+    val period2 = Period(LocalDate.now(), LocalDate.now().plusDays(14))
 
-    val gamer = listGamers[0]
+    val rent = gamer.rentGame(game1, period)
+    val rent2 = gamer.rentGame(game2, period2)
 
-    val rent = gamer.rentGame(game, period)
-    println(rent)
+    for (rent in gamer.rentGames){
+        println(rent)
+    }
 }

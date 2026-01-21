@@ -48,9 +48,9 @@ class CheapSharkClient {
         }
 
         result.onSuccess {
-            println("You need add a description? Y/N")
-            print("Response: ")
-            val userResponse = scanner.nextLine()
+//            println("You need add a description? Y/N")
+//            print("Response: ")
+            val userResponse = "N"
 
             if (userResponse.equals("Y", ignoreCase = true)) {
                 print("Insert the description: ")

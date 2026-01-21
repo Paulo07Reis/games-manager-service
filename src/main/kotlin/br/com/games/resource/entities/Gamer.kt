@@ -20,6 +20,7 @@ data class Gamer(
     var userId: String? = null
         private set
     val sharedGames = mutableListOf<Game?>()
+    val rentGames = mutableListOf<Rent>()
 
     constructor(
         name: String,
@@ -57,7 +58,9 @@ data class Gamer(
     }
 
     fun rentGame(game: Game?, period: Period): Rent {
-        return Rent(this, game, period)
+        val rent = Rent(this, game, period)
+        rentGames.add(rent)
+        return rent
     }
 
     init {
