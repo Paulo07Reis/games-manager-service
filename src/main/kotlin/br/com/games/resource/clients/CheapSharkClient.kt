@@ -60,8 +60,6 @@ class CheapSharkClient {
                 game?.description = game.title
             }
 
-            println("\n" + game)
-
             return game
         }
 

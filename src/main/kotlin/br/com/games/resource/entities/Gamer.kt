@@ -55,6 +55,10 @@ data class Gamer(
         }
     }
 
+    fun rentGame(game: Game?): Rent {
+        return Rent(this, game)
+    }
+
     init {
         if (name.isBlank()) {
             throw IllegalArgumentException("Name must not be blank")
