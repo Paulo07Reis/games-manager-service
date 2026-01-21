@@ -56,8 +56,8 @@ data class Gamer(
         }
     }
 
-    fun rentGame(game: Game?, initialDate: LocalDate, finalDate: LocalDate): Rent {
-        return Rent(this, game, initialDate, finalDate)
+    fun rentGame(game: Game?, period: Period): Rent {
+        return Rent(this, game, period)
     }
 
     init {
