@@ -1,5 +1,6 @@
 package org.example.br.com.games.resource.entities
 
+import java.time.LocalDate
 import java.util.Scanner
 import kotlin.random.Random
 
@@ -55,8 +56,8 @@ data class Gamer(
         }
     }
 
-    fun rentGame(game: Game?): Rent {
-        return Rent(this, game)
+    fun rentGame(game: Game?, initialDate: LocalDate, finalDate: LocalDate): Rent {
+        return Rent(this, game, initialDate, finalDate)
     }
 
     init {

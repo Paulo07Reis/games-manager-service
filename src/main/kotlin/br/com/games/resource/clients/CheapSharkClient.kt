@@ -40,7 +40,7 @@ class CheapSharkClient {
         val result = runCatching {
             val infoGame = gson.fromJson(response,  GamesInfo::class.java)
 
-            game = Game(infoGame.info.title, infoGame.info.thumb)
+            game = Game(infoGame.info.title, infoGame.info.thumb, infoGame.cheapestPriceEver.price)
         }
 
         result.onFailure {
