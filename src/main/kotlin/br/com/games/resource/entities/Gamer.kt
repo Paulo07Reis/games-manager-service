@@ -1,6 +1,6 @@
 package org.example.br.com.games.resource.entities
 
-import java.time.LocalDate
+import java.time.Month
 import java.util.Scanner
 import kotlin.random.Random
 
@@ -56,6 +56,18 @@ data class Gamer(
         } else {
             throw IllegalArgumentException("Invalid email format")
         }
+    }
+
+    fun gamesMonth(month: Month): List<Game> {
+        val gameList = mutableListOf<Game>()
+
+        for (rent in rentGames){
+            if (rent.period.initialDate.month == month){
+                rent.game?.let { gameList.add(it) }
+            }
+        }
+
+        return gameList
     }
 
     fun rentGame(game: Game?, period: Period): Rent {

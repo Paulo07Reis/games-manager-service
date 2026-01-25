@@ -6,7 +6,13 @@ class SubscriptionPlan (
     val gamesQuantity: Int
 ) : Plan(type) {
 
-    override fun getValue(gamePrice: Double, rentTime: Int) : Double {
-        return gamePrice * rentTime
+    override fun getValue(rent: Rent) : Double {
+        val gamesRentInTheMonth = rent.gamer.gamesMonth(rent.period.initialDate.month).size
+
+        return if (gamesRentInTheMonth <= gamesQuantity - 1) {
+            0.0
+        } else {
+            super.getValue(rent)
+        }
     }
 }

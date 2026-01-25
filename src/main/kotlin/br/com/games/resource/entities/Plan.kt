@@ -1,9 +1,9 @@
 package org.example.br.com.games.resource.entities
 
-open class Plan(
+sealed class Plan(
     val type: String,
 ) {
-    open fun getValue(gamePrice: Double, rentTime: Int): Double {
-        return gamePrice * rentTime
+    open fun getValue(rent: Rent): Double {
+        return rent.game!!.price * rent.period.rentTime()
     }
 }

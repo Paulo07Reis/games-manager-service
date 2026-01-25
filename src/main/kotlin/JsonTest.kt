@@ -31,6 +31,8 @@ fun main(){
 
     gamer2.rentGame(game1, period)
     gamer2.rentGame(game2, period2)
+    gamer2.rentGame(game1, period)
+    gamer2.rentGame(game2, period2)
 
     for (rent in gamer2.rentGames){
         println(rent)
