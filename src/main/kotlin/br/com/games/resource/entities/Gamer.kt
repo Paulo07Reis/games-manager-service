@@ -21,6 +21,7 @@ data class Gamer(
         private set
     val sharedGames = mutableListOf<Game?>()
     val rentGames = mutableListOf<Rent>()
+    var plan: Plan = Plan("BRONZE")
 
     constructor(
         name: String,

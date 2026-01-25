@@ -4,7 +4,7 @@ data class Rent(
     val gamer: Gamer,
     val game: Game?,
     val period: Period,
-    val rentValue: Double = game!!.price * period.rentTime()
+    val rentValue: Double = gamer.plan.getValue(game!!.price, period.rentTime())
 ){
 
     override fun toString(): String {
