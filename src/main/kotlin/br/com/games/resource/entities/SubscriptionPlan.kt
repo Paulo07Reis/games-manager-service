@@ -4,4 +4,9 @@ class SubscriptionPlan (
     type: String,
     val monthlyFee: Double,
     val gamesQuantity: Int
-) : Plan(type)
+) : Plan(type) {
+
+    override fun getValue(gamePrice: Double, rentTime: Int) : Double {
+        return gamePrice * rentTime
+    }
+}

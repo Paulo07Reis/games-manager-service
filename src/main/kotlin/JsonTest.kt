@@ -2,6 +2,7 @@ package org.example
 
 import org.example.br.com.games.resource.clients.CheapSharkClient
 import org.example.br.com.games.resource.entities.Period
+import org.example.br.com.games.resource.entities.SubscriptionPlan
 import java.time.LocalDate
 
 fun main(){
@@ -20,6 +21,18 @@ fun main(){
     val rent2 = gamer.rentGame(game2, period2)
 
     for (rent in gamer.rentGames){
+        println(rent)
+    }
+
+    val gamer2 = listGamers[5]
+    println("\n\n")
+
+    gamer2.plan = SubscriptionPlan("SILVER", 9.90, 3)
+
+    gamer2.rentGame(game1, period)
+    gamer2.rentGame(game2, period2)
+
+    for (rent in gamer2.rentGames){
         println(rent)
     }
 }
